@@ -1,4 +1,4 @@
-# publications/stokex — workflow
+# publications/stokex
 
 Defensive publication of the **$tôkEx** algorithm (`stokex_defensive_publication.tex`),
 its figures, its companion scripts, and its formal proofs.
@@ -29,20 +29,6 @@ via system LaTeX). The environment lives in a single `.venv/` at the **repo root
 that is **local and gitignored**: it is shared by every instance of Milu on the
 machine, but never leaves for GitHub. Only `requirements.txt` — the *recipe*, at the
 repo root — is versioned. Never create a second `.venv` (see AGENTS.md).
-
-This is organ E of the wiring, the **workbench**: local, disposable, rebuildable
-from the recipe. The specification is in `docs/Cablage.md`; this file gives only
-the `$tôkEx` part of it.
-
-Bootstrap (from the repo root):
-
-```sh
-python3 -m venv .venv
-./.venv/bin/pip install -r requirements.txt
-```
-
-System prerequisite: a LaTeX installation (`text.usetex=True` → `latex`, `dvipng`),
-provided by MacTeX / TeX Live.
 
 ## Generating the figures
 
@@ -86,9 +72,9 @@ The three verifications, independent of one another:
 cd publications/stokex/lean_proofs && lake build                     # the Lean proofs
 ```
 
-The Lean setup is now **self-contained in this repo** (see AGENTS.md, "Lean"): the
+The Lean setup is **self-contained in this repo** (see AGENTS.md, "Lean"): the
 toolchain is pinned by the repo-root `lean-toolchain` (`leanprover/lean4:v4.32.0`),
-mathlib is prebuilt in the shared `.lake-shared/` cache (the project's `.lake`
+mathlib is prebuilt in the shared `.lake-shared/` cache (the $tôkEx `lean_proofs.lake`
 symlinks to it), and the proofs build on the shared `lean_common/` foundation
 (library `TokCommon`), which stokex `require`s by relative path. So a plain
 `lake build` from `lean_proofs/` verifies everything — no `lake exe cache get`
@@ -160,10 +146,6 @@ metadata**. For a defensive publication, the metadata *is* the product: it is
 through it that an examiner recovers the prior art. To be aligned on the 6 visible
 ones. *(The maximum number of keywords TDCommons allows remains unverified — see the
 notebook. 6 is the prudent value; do not raise it without confirmation.)*
-
-**3. The `pdftitle` is no longer the document's title** (l. 18): it announces "a
-continuous, *order-book-free* exchange mechanism" while the title page says "A
-continuous exchange mechanism" (l. 68). TDCommons will read the field, not the page.
 
 **4. The yellow placeholder** (l. 846–851): to be replaced by the final sentence
 citing the URL frozen at the chosen tag. *`stokex_go_live.md` still places it at

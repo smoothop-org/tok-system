@@ -4,6 +4,22 @@ CLAUDE.md
 .claude/
 .vscode/
 
+# LaTeX build artefacts (keep .tex and figure/output .pdf tracked)
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.fdb
+*.nav
+*.snm
+*.vrb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

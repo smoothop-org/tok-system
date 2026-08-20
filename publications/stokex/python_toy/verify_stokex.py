@@ -19,8 +19,9 @@ def theta_of_w(w):              # inverse
     return 200.0 / math.pi * math.atan(3.0 * w)
 
 
-def f(x):                       # trader function, stable form
-    return (x ** 3 - 1.0) / x
+def f(x):                       # trader function, shifted form
+    y = x - 1.0
+    return y * math.fma(y, y, 3.0 * y + 3.0) / x  # math.fma available from Python 3.13
 
 
 def market_price(parts):        # eqMarketPrice: V = (Σ w v / Σ w v^-2)^(1/3)
@@ -195,9 +196,8 @@ def f_exact(x):
 def f_std(x):
     return x * x - 1.0 / x
 
-def f_shifted(x):           # y = x−1; denominator x, NOT y+1
-    y = x - 1.0
-    return y * (y * y + 3.0 * y + 3.0) / x
+def f_shifted(x):
+    return f(x)  # see f(x)
 
 def f_shifted_bad(x):       # recomposed denominator y+1: ~1e-5 error at 1e-12
     y = x - 1.0
@@ -281,4 +281,4 @@ print(f"{'TEST':<58}{'RESULT':<10}DETAIL")
 for name, ok, detail in results:
     print(f"{name:<58}{'PASS' if ok else 'FAIL':<10}{detail}")
 fails = [n for n, ok, _ in results if not ok]
-print("\n→", "ALL PASS — the paper tells the truth." if not fails else f"FAILURES: {fails}")
+print("\n→", "ALL PASS :)" if not fails else f"FAILURES: {fails}")

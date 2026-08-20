@@ -1,11 +1,12 @@
-# Python workbench for the showcase — one venv per repo (organ E).
+# Python workbench for the showcase — one venv per repo.
+# Requires Python >= 3.13 — math.fma (used in python_toy/verify_stokex.py) is
+# only available from 3.13. (requirements.txt cannot enforce this; noted here.)
 # Bootstrap (from the repo root):
-#   python3 -m venv .venv
+#   python3.13 -m venv .venv
 #   ./.venv/bin/pip install -r requirements.txt
 #
 # publications/stokex/figures/gen_figures.py — the $tôkEx figures:
 #   ./.venv/bin/python publications/stokex/figures/gen_figures.py
 #   Also requires a system LaTeX installation (text.usetex=True):
-#   latex, dvipng — provided by MacTeX / TeX Live.
 matplotlib
 pandas
