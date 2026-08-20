@@ -1,0 +1,122 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{UniswapV2}
+\citation{AngerisChitra2020}
+\citation{Hanson2003}
+\citation{AbernethyChenVaughan2013}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Notation}{3}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Principles of the \$t\^{o}kEx{} Algorithm}{3}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Core Equations of the \$t\^{o}kEx{} Algorithm}{5}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}The personal trading robot}{5}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Exchange-velocity function}{5}{subsubsection.3.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces General schema of a participant's personal trading robot: it takes the participant's own inputs and the current market price, and outputs the two exchange velocities. The single market price it reacts to emerges from the aggregate of every participant's robot at once and feeds back into each of them continuously. The same construction runs independently for every participant $i = 1, \dots  , N$; three are shown here.}}{6}{figure.caption.6}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{figRobotSchema}{{1}{6}{General schema of a participant's personal trading robot: it takes the participant's own inputs and the current market price, and outputs the two exchange velocities. The single market price it reacts to emerges from the aggregate of every participant's robot at once and feeds back into each of them continuously. The same construction runs independently for every participant $i = 1, \dots , N$; three are shown here}{figure.caption.6}{}}
+\newlabel{eqExchangeSymmetry}{{1}{6}{Exchange-velocity function}{equation.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The trader function $f(x) = x^2 - 1/x$, where $x$ is the ratio between the market price and the participant's own estimate. It vanishes at $x = 1$ (no trade at one's own estimate), is negative below it and positive above it, and grows without bound on both sides: the further the market strays from the estimate, the more urgent the trade.}}{7}{figure.caption.7}\protected@file@percent }
+\newlabel{figTraderFunction}{{2}{7}{The trader function $f(x) = x^2 - 1/x$, where $x$ is the ratio between the market price and the participant's own estimate. It vanishes at $x = 1$ (no trade at one's own estimate), is negative below it and positive above it, and grows without bound on both sides: the further the market strays from the estimate, the more urgent the trade}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}The trader function}{7}{subsubsection.3.1.2}\protected@file@percent }
+\newlabel{eqTraderFunction}{{2}{7}{The trader function}{equation.3.2}{}}
+\newlabel{eqFunctionX}{{3}{7}{The trader function}{equation.3.3}{}}
+\newlabel{eqShiftedForm}{{4}{8}{The trader function}{equation.3.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}The weight function}{8}{subsubsection.3.1.3}\protected@file@percent }
+\newlabel{eqFunctionW}{{5}{8}{The weight function}{equation.3.5}{}}
+\newlabel{figDegree}{{3a}{8}{Linear scale in $x$}{figure.caption.8}{}}
+\newlabel{sub@figDegree}{{a}{8}{Linear scale in $x$}{figure.caption.8}{}}
+\newlabel{figDegreeLog}{{3b}{8}{Logarithmic scale in $x$}{figure.caption.8}{}}
+\newlabel{sub@figDegreeLog}{{b}{8}{Logarithmic scale in $x$}{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Geometrical interpretation of the participant's degree of confidence $\theta _i$}}{8}{figure.caption.8}\protected@file@percent }
+\newlabel{figDegreeBoth}{{3}{8}{Geometrical interpretation of the participant's degree of confidence $\theta _i$}{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces participant $i$'s exchange velocities for an estimate of $\left [\alpha / \beta \right ]_i = 10$~$\alpha $ per~$\beta $ with a degree of confidence $\theta _i= 75 \%$. To compare both exchange velocities on a single axis, asset~B's velocity is converted to its $\alpha $-equivalent using the participant's own estimate, $\dot  {X}_i^\beta \left [\alpha / \beta \right ]_i$ — the fair conversion factor according to participant $i$, not the (generally different) market price $\left [\alpha / \beta \right ]_\Omega $.}}{9}{figure.caption.9}\protected@file@percent }
+\newlabel{figExchangeSymmetry}{{4}{9}{participant $i$'s exchange velocities for an estimate of $\priceAB _i = 10$~$\alpha $ per~$\beta $ with a degree of confidence $\theta _i= 75 \%$. To compare both exchange velocities on a single axis, asset~B's velocity is converted to its $\alpha $-equivalent using the participant's own estimate, $\dot {X}_i^\beta \priceAB _i$ — the fair conversion factor according to participant $i$, not the (generally different) market price $\priceAB _\Omega $}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Consistency with the principles}{9}{subsubsection.3.1.4}\protected@file@percent }
+\newlabel{eqExchangeVelocities}{{6}{9}{Consistency with the principles}{equation.3.6}{}}
+\newlabel{eqExchangeAtMarketPrice}{{7}{9}{Consistency with the principles}{equation.3.7}{}}
+\citation{FREDDEXCAUS}
+\citation{FREDDEXUSEU}
+\citation{FREDDEXCAUS}
+\citation{FREDDEXUSEU}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Time it takes to empty a participant's account}{10}{subsubsection.3.1.5}\protected@file@percent }
+\newlabel{eqDeltaT}{{8}{10}{Time it takes to empty a participant's account}{equation.3.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.6}Participant's profit over a given time period}{10}{subsubsection.3.1.6}\protected@file@percent }
+\newlabel{secParticipantProfit}{{3.1.6}{10}{Participant's profit over a given time period}{subsubsection.3.1.6}{}}
+\newlabel{eqParticipantProfitAlpha}{{10}{10}{Participant's profit over a given time period}{equation.3.10}{}}
+\newlabel{eqParticipantProfitBeta}{{11}{10}{Participant's profit over a given time period}{equation.3.11}{}}
+\newlabel{eqProfitIdentity}{{12}{10}{Participant's profit over a given time period}{equation.3.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.7}Numerical illustration: a currency pair (CAD/EUR)}{10}{subsubsection.3.1.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Numerical illustration on real data: the CAD/EUR exchange rate (top, FRED series \texttt  {DEXCAUS}~\cite  {FREDDEXCAUS} and \texttt  {DEXUSEU}~\cite  {FREDDEXUSEU}, price on a log axis) over the shaded observation window, 2016-07-01 to 2021-07-01, used only to compute a plain average (solid, horizontal: no trend fit is warranted here) that becomes the declared estimate throughout the unshaded exchange window, 2021-07-01 to 2026-07-01, $\approx 1.497$~CAD per EUR (dashed line). Second: the two account balances of Alice's wallet, starting at 100~CAD (red, left axis) and 100~EUR (blue, right axis), each kept in its own native currency. Third and fourth: Alice's profit since the start of the exchange window (Eqs.~\eqref  {eqParticipantProfitAlpha}--\eqref  {eqParticipantProfitBeta}), accounted in CAD ($P^{\mathrm  {CAD}}$, red) and independently in EUR ($P^{\mathrm  {EUR}}$, blue) --- the same quantity, related exactly by Eq.~\eqref  {eqProfitIdentity}, not two independent findings.}}{11}{figure.caption.10}\protected@file@percent }
+\newlabel{figCADEURExample}{{5}{11}{Numerical illustration on real data: the CAD/EUR exchange rate (top, FRED series \texttt {DEXCAUS}~\cite {FREDDEXCAUS} and \texttt {DEXUSEU}~\cite {FREDDEXUSEU}, price on a log axis) over the shaded observation window, 2016-07-01 to 2021-07-01, used only to compute a plain average (solid, horizontal: no trend fit is warranted here) that becomes the declared estimate throughout the unshaded exchange window, 2021-07-01 to 2026-07-01, $\approx 1.497$~CAD per EUR (dashed line). Second: the two account balances of Alice's wallet, starting at 100~CAD (red, left axis) and 100~EUR (blue, right axis), each kept in its own native currency. Third and fourth: Alice's profit since the start of the exchange window (Eqs.~\eqref {eqParticipantProfitAlpha}--\eqref {eqParticipantProfitBeta}), accounted in CAD ($P^{\mathrm {CAD}}$, red) and independently in EUR ($P^{\mathrm {EUR}}$, blue) --- the same quantity, related exactly by Eq.~\eqref {eqProfitIdentity}, not two independent findings}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}The market}{12}{subsection.3.2}\protected@file@percent }
+\newlabel{secMarketPrice}{{3.2}{12}{The market}{subsection.3.2}{}}
+\newlabel{eqEquilibrium}{{13}{12}{The market}{equation.3.13}{}}
+\newlabel{eqMarketPrice}{{14}{12}{The market}{equation.3.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Implementation of the \$t\^{o}kEx{} Algorithm}{13}{section.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Process by which the state of the \$t\^{o}kEx{} is updated between $t_0$ and $t_1$.}}{13}{figure.caption.11}\protected@file@percent }
+\newlabel{figMarketSteps}{{6}{13}{Process by which the state of the \StokEx {} is updated between $t_0$ and $t_1$}{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Inner \$t\^{o}kEx{} Algorithm}{14}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Inputs}{14}{subsubsection.4.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Outputs}{14}{subsubsection.4.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Plain description of the inner \$t\^{o}kEx{} algorithm}{14}{subsubsection.4.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}Pseudocode for the inner \$t\^{o}kEx{} algorithm}{15}{subsubsection.4.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Outer \$t\^{o}kEx{} Algorithm}{16}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Inputs}{16}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Outputs}{16}{subsubsection.4.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Pseudocode for the outer \$t\^{o}kEx{} algorithm}{16}{subsubsection.4.2.3}\protected@file@percent }
+\citation{Kahan1965}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Reference implementation in the t\^{o}k system}{17}{subsection.4.3}\protected@file@percent }
+\newlabel{secReferenceImplementation}{{4.3}{17}{Reference implementation in the t\^{o}k system}{subsection.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The reference implementation of the \$t\^{o}kEx{} in the t\^{o}k system, shown against a fictional foreign currency, the TIK. \emph  {Top:} the market view --- the current exchange rate, each account's balance (here $100$~t\^{o}ks and $1000$~TIK), and the two exchange velocities, quoted per $15$~days (the reference pace $\dot  {R}$, one t\^{o}k per $15$~days). \emph  {Bottom:} the same participant declaring their two inputs, an estimate ($1$~TIK${}={}10$~t\^{o}ks) and a degree of confidence ($75\%$), with the response curves the mechanism derives from them.}}{18}{figure.caption.12}\protected@file@percent }
+\newlabel{figRefImplUI}{{7}{18}{The reference implementation of the \StokEx {} in the t\^{o}k system, shown against a fictional foreign currency, the TIK. \emph {Top:} the market view --- the current exchange rate, each account's balance (here $100$~t\^{o}ks and $1000$~TIK), and the two exchange velocities, quoted per $15$~days (the reference pace $\dot {R}$, one t\^{o}k per $15$~days). \emph {Bottom:} the same participant declaring their two inputs, an estimate ($1$~TIK${}={}10$~t\^{o}ks) and a degree of confidence ($75\%$), with the response curves the mechanism derives from them}{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Market analysis}{19}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Market behavior}{19}{subsection.5.1}\protected@file@percent }
+\newlabel{secMarketBehavior}{{5.1}{19}{Market behavior}{subsection.5.1}{}}
+\newlabel{eqDefMarketBehavior}{{15}{19}{Market behavior}{equation.5.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Total market weight}{19}{subsection.5.2}\protected@file@percent }
+\newlabel{eqMarketBehavior}{{16}{19}{Total market weight}{equation.5.16}{}}
+\newlabel{eqTotalMarketWeight}{{17}{19}{Total market weight}{equation.5.17}{}}
+\newlabel{eqTotalMarketWeight2}{{18}{19}{Total market weight}{equation.5.18}{}}
+\newlabel{eqTotalMarketDegree}{{19}{20}{Total market weight}{equation.5.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Average participant estimate}{20}{subsection.5.3}\protected@file@percent }
+\newlabel{eqAverageParticipantWeight}{{20}{20}{Average participant estimate}{equation.5.20}{}}
+\newlabel{eqAvergageParticipantDegree}{{21}{20}{Average participant estimate}{equation.5.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Market update}{20}{subsection.5.4}\protected@file@percent }
+\newlabel{secMarketUpdate}{{5.4}{20}{Market update}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Analogous variance of the participants' estimate}{20}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{21}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Annexes: Mathematical Proofs}{22}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}The family of admissible trader functions}{22}{subsection.7.1}\protected@file@percent }
+\newlabel{secTraderFamily}{{7.1}{22}{The family of admissible trader functions}{subsection.7.1}{}}
+\newlabel{eqFunctionalEquation}{{27}{22}{The family of admissible trader functions}{equation.7.27}{}}
+\newlabel{eqTraderFamily}{{28}{22}{The family of admissible trader functions}{equation.7.28}{}}
+\newlabel{eqFamilyPrice}{{29}{22}{The family of admissible trader functions}{equation.7.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}The family of admissible weight functions}{23}{subsection.7.2}\protected@file@percent }
+\newlabel{secWeightFamily}{{7.2}{23}{The family of admissible weight functions}{subsection.7.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}The reference exchange velocity}{23}{subsection.7.3}\protected@file@percent }
+\newlabel{secReferenceGauge}{{7.3}{23}{The reference exchange velocity}{subsection.7.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Proof that the participant's degree of confidence corresponds to a geometrical angle}{24}{subsection.7.4}\protected@file@percent }
+\newlabel{secProofDegree}{{7.4}{24}{Proof that the participant's degree of confidence corresponds to a geometrical angle}{subsection.7.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Proof that the exchange-velocity function implies an exchange at market price}{25}{subsection.7.5}\protected@file@percent }
+\newlabel{secProofExchangeAtMarketPrice}{{7.5}{25}{Proof that the exchange-velocity function implies an exchange at market price}{subsection.7.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6}Proof that the expression for the market price corresponds to the equilibrium between supply and demand}{25}{subsection.7.6}\protected@file@percent }
+\newlabel{secProofMarketprice}{{7.6}{25}{Proof that the expression for the market price corresponds to the equilibrium between supply and demand}{subsection.7.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7}Proof that the market price is unique}{26}{subsection.7.7}\protected@file@percent }
+\newlabel{secProofUniqueness}{{7.7}{26}{Proof that the market price is unique}{subsection.7.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.8}Proof that the total market behaves as a single participant}{27}{subsection.7.8}\protected@file@percent }
+\newlabel{secProofTotalMarketWeight}{{7.8}{27}{Proof that the total market behaves as a single participant}{subsection.7.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.9}Behavior of the market as one participant's weight diverges}{28}{subsection.7.9}\protected@file@percent }
+\newlabel{secProofInfiniteWeight}{{7.9}{28}{Behavior of the market as one participant's weight diverges}{subsection.7.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.10}Statistical interpretation of the equation for the total market weight}{29}{subsection.7.10}\protected@file@percent }
+\newlabel{secStatisticalInterpretation}{{7.10}{29}{Statistical interpretation of the equation for the total market weight}{subsection.7.10}{}}
+\bibcite{Kahan1965}{1}
+\bibcite{Hanson2003}{2}
+\bibcite{AbernethyChenVaughan2013}{3}
+\bibcite{UniswapV2}{4}
+\bibcite{AngerisChitra2020}{5}
+\bibcite{FREDDEXCAUS}{6}
+\bibcite{FREDDEXUSEU}{7}
+\newlabel{LastPage}{{7.10}{30}{Statistical interpretation of the equation for the total market weight}{page.30}{}}
+\gdef\lastpage@lastpage{30}
+\gdef\lastpage@lastpageHy{30}
+\gdef \@abspage@last{30}

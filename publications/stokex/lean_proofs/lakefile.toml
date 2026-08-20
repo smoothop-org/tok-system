@@ -1,0 +1,23 @@
+name = "stokexproof"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["Stokexproof"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.32.0"
+
+# Shared tôk-system foundation (see AGENTS.md, "Shared foundation").
+[[require]]
+name = "TokCommon"
+path = "../../../lean_common"
+
+[[lean_lib]]
+name = "Stokexproof"
