@@ -1,3 +1,9 @@
+# Artefacts locaux
+CLAUDE.md
+.DS_Store
+.claude/
+.vscode/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -216,3 +222,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Lean — cache mathlib shared (~7 Go) and builds lake.
+.lake-shared/
+.lake/

@@ -1,0 +1,11 @@
+# Python workbench for the showcase — one venv per repo (organ E).
+# Bootstrap (from the repo root):
+#   python3 -m venv .venv
+#   ./.venv/bin/pip install -r requirements.txt
+#
+# publications/stokex/figures/gen_figures.py — the $tôkEx figures:
+#   ./.venv/bin/python publications/stokex/figures/gen_figures.py
+#   Also requires a system LaTeX installation (text.usetex=True):
+#   latex, dvipng — provided by MacTeX / TeX Live.
+matplotlib
+pandas
