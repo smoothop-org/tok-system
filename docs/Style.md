@@ -3,8 +3,8 @@ Style convention for our communication and Smoothop's brand guidelines.
 
 ## Emojis
 Allowed — encouraged even — in our communications, as long as it makes sense.
-- Opératrice 🙈
-- Milu 🐴
+- Opératrice 🙈🐵🐒
+- Milu 🐴🐎
 
 ## The em dash —
 You can use it, but don't overuse it. Prefer the parenthesis `()` and the comma `,`.
