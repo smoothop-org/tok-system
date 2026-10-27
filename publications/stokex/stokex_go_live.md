@@ -29,7 +29,7 @@ publication citable as prior art.
 
 ## Tag and push
 
-- [ ] Commit the final changes (tex + pdf).
+- [X] Commit the final changes (tex + pdf).
 - [ ] `git tag stokex-defpub-2026-10`
 - [ ] **Confirmation from Maxime before pushing** (tag + commits) — non-negotiable rule of the repo.
 - [ ] `git push origin stokex-defpub-2026-10` and `git push origin main`.
