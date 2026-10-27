@@ -1,38 +1,38 @@
 # Go-live — $t\^okEx defensive publication
 
-Checklist before actually pushing the tag `stokex-defpub-2026-08` and making the
+Checklist before actually pushing the tag `stokex-defpub-2026-10` and making the
 publication citable as prior art.
 
 ## Placeholders to remove
 
-- [ ] Request peer review from the board
+- [X] Request peer review from the board
 
-- [ ] `latex_document/stokex_defensive_publication.tex:643-648` — replace the
+- [X] `latex_document/stokex_defensive_publication.tex:742-743` — replace the
   `\placeholder{...}` block with the final sentence citing the URL once the tag is
   pushed
-  (`https://github.com/smoothop-org/tok-system/tree/stokex-defpub-2026-08/publications/stokex/lean_proofs`).
-- [ ] Check that the link to the same tag in the "AI contribution statement"
-  (`latex_document/stokex_defensive_publication.tex:83`) resolves once the tag is in place.
-- [ ] `grep -n "À COMPLÉTER\|placeholder" latex_document/stokex_defensive_publication.tex` must
-  return nothing in the body of the text (only the entries of the notation table,
-  which use "placeholder" as a mathematical term, are legitimate).
+  (`https://github.com/smoothop-org/tok-system/tree/stokex-defpub-2026-10/publications/stokex/lean_proofs`).
+- [ ] Check that the link to the same tag in the "Defensive publication notice"
+  (`latex_document/stokex_defensive_publication.tex:84`) resolves once the tag is in place.
+- [X] `grep -n "À COMPLÉTER\|placeholder" latex_document/stokex_defensive_publication.tex` must
+  return no `\placeholder{...}` call in the body (the two remaining hits are legitimate:
+  the `\placeholder` macro definition at l.51, and the English word "placeholder" in prose at l.416).
 
 ## Checks before the tag
 
-- [ ] `python3 python_toy/verify_stokex.py` passes (numerical verification of the paper's claims).
-- [ ] The Lean project (`lean_proofs/`) compiles: `cd lean_proofs && lake build`.
-- [ ] `lean_proofs/README.md` is cleaned of its "GitHub configuration" section (scaffolding
+- [X] `python3 python_toy/verify_stokex.py` passes (numerical verification of the paper's claims).
+- [X] The Lean project (`lean_proofs/`) compiles: `cd lean_proofs && lake build`.
+- [X] `lean_proofs/README.md` is cleaned of its "GitHub configuration" section (scaffolding
   instructions, no longer relevant once the repo is in place).
-- [ ] Recompile the PDF (`cd latex_document && latexmk -pdf stokex_defensive_publication.tex`) and check
+- [X] Recompile the PDF (`cd latex_document && latexmk -pdf stokex_defensive_publication.tex`) and check
   there is no new blocking warning.
-- [ ] Reread the final PDF in full (not only the recently edited sections).
+- [X] Reread the final PDF in full (not only the recently edited sections).
 
 ## Tag and push
 
 - [ ] Commit the final changes (tex + pdf).
-- [ ] `git tag stokex-defpub-2026-08`
+- [ ] `git tag stokex-defpub-2026-10`
 - [ ] **Confirmation from Maxime before pushing** (tag + commits) — non-negotiable rule of the repo.
-- [ ] `git push origin stokex-defpub-2026-08` and `git push origin main`.
+- [ ] `git push origin stokex-defpub-2026-10` and `git push origin main`.
 
 ## After the push
 
@@ -45,7 +45,7 @@ Once submitted and published on TDCommons, the document can no longer be withdra
 modified: that is precisely what makes it opposable prior art. Everything must be frozen
 and validated before this point.
 
-- [ ] The submitted PDF is **exactly** the one from the tag `stokex-defpub-2026-08` (not a
+- [ ] The submitted PDF is **exactly** the one from the tag `stokex-defpub-2026-10` (not a
   fresher local version, not a draft) — compare the hash or re-download from GitHub.
 - [ ] No placeholder, author note, or "to be completed" comment remains in the PDF.
 - [ ] The PDF passes the CLAUDE.md test: nothing in it we would not be comfortable seeing

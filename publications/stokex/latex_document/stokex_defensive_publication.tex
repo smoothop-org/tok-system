@@ -19,7 +19,7 @@
     pdftitle={The \$tôkEx Algorithm: A continuous exchange mechanism between two fungible assets},
     pdfauthor={Maxime Tousignant (Smoothop)},
     pdfsubject={Defensive publication: the exchange algorithm of the tôk system},
-    pdfkeywords={exchange algorithm, market mechanism, automated market maker, AMM, order book, continuous trading, market clearing, equilibrium price, currency exchange, TWAP, tok, Smoothop}
+    pdfkeywords={stokex, automated market maker (AMM), decentralized exchange, continuous trading, prediction market, tôk system}
 }
 \usepackage{tabularx}
 \usepackage{calc}
@@ -37,7 +37,7 @@
 \pagestyle{fancy}
 \fancyhead[L]{Smoothop}
 \fancyhead[C]{Defensive Publication}
-\fancyhead[R]{August 2026}
+\fancyhead[R]{October 2026}
 \fancyfoot[L]{}
 \fancyfoot[C]{}
 \fancyfoot[R]{page \thepage /\pageref*{LastPage}}
@@ -77,19 +77,19 @@ Maxime Tousignant\textsuperscript{1}
 Contact: \texttt{maxime.tousignant@smoothop.org}}
 
 \vspace{6pt}
-\textit{Original technical memorandum: January 2022 (internal, undisclosed).\\ Published as a defensive publication: August 2026.}
+\textit{Original technical memorandum: January 2022 (internal, undisclosed).\\ Published as a defensive publication: October 2026.}
 \end{center}
 
-\subsection*{Defensive publication notice} % locked
-This document is made public in order to place the methods it describes in the prior art. Its publication is intended to preclude the grant of valid patent claims on these methods by any party. No exclusivity is sought by the publisher. This document is distributed under the Creative Commons Attribution 4.0 International license (CC BY 4.0). Additional content including mathematical proofs (Lean~4 / mathlib), numerical verifications and a python toy implementation of the \StokEx{} algorithm can be found at \url{https://github.com/smoothop/tok-system} (tag \texttt{stokex-defpub-2026-08}). The \StokEx{} algorithm is part of the \tok{} system, an alternative economic system developed by Smoothop (\url{https://www.smoothop.org/}).
+\subsection*{Defensive publication notice}
+This document is made public in order to place the methods it describes in the prior art. Its publication is intended to preclude the grant of valid patent claims on these methods by any party. No exclusivity is sought by the publisher. This document is distributed under the Creative Commons Attribution 4.0 International license (CC BY 4.0). Additional content including mathematical proofs (Lean~4 / mathlib), numerical verifications and a python toy implementation of the \StokEx{} algorithm can be found at \url{https://github.com/smoothop-org/tok-system} (tag \texttt{stokex-defpub-2026-10}). The \StokEx{} algorithm is part of the \tok{} system, an alternative economic system developed by Smoothop (\url{https://www.smoothop.org/}).
 
-\subsection*{AI contribution statement} % locked
+\subsection*{AI contribution statement}
 This document was prepared with the assistance of Milu, an AI agent (built on Anthropic's Claude models) integrated into the Smoothop project. Milu's contribution was directed and reviewed by the human author who is solely responsible for the content of this document. % uman author, smooth operator
 
-\subsection*{Name and pronunciation} % locked
+\subsection*{Name and pronunciation}
 The name \StokEx{} juxtaposes the two currencies of the exchange (the dollar and the \tok{}), followed by ``Ex'' for exchange. It is pronounced \textipa{[stOkEks]}: the dollar sign is read as an ``S''.
 
-\subsection*{Abstract} % locked
+\subsection*{Abstract}
 The \StokEx{} is an algorithm for the continuous exchange of two fungible assets A and B. It works without an order book, without counterparty matching, without liquidity pools and without fees. It aims at a market that is fair, transparent, and accessible.
 
 The \StokEx{} asks each participant two simple questions up front: how much do they think one asset is worth relative to the other, and how confident are they in that estimate? From those answers, the \StokEx{} extracts two parameters for each participant identified by an index $i$: their estimate $\priceAB_i$ of the relative value of assets A and B, and their degree of confidence $\theta_i$, between 0 and 100\%, in that estimate. Every participant thereby deploys their own personal trading robot with one standing order: buy low and sell high, at every instant.
@@ -102,7 +102,7 @@ From an outsider's perspective, the whole market is provably indistinguishable f
 
 \textbf{Keywords:} stokex, automated market maker (AMM), decentralized exchange, continuous trading, prediction market, \tok{} system.
 
-\subsection*{Relation to known mechanisms} % locked
+\subsection*{Relation to known mechanisms}
 The \StokEx{} is an automated exchange mechanism, but it differs from the known families of market designs.
 
 Unlike the continuous double auction (the order book of stock and cryptocurrency exchanges), the \StokEx{} involves no orders, no bids or asks, and no counterparty matching.
@@ -117,7 +117,7 @@ The \StokEx{} computes the market price in closed form from the participants' de
 
 \clearpage
 % ----------------------------------------------------------------------
-\section{Notation} % locked
+\section{Notation}
 % ----------------------------------------------------------------------
 
 \begin{tabularx}{\textwidth}{rX}
@@ -151,7 +151,7 @@ A note on the index $i$: it tags a participant, the way a Universal Unique Ident
 A note on the overdot: in this document it marks a velocity, an amount per unit of time (e.g. $\dot{X}^\alpha$, $\dot{X}^\beta$, $\dot{R}$), constant between two events of the market. It is not the derivative of a state variable. Actual time derivatives are written explicitly, as in $dn^\alpha_i/dt$.
 
 % ----------------------------------------------------------------------
-\section{Principles of the \StokEx{} Algorithm} % locked
+\section{Principles of the \StokEx{} Algorithm}
 % ----------------------------------------------------------------------
 
 The purpose of the algorithm is to set up a market among participants in which two fungible assets, A and B, can be \emph{continuously} exchanged according to each participant's estimate of the relative value of the two assets. For example, rather than buying 5~$\beta$ for 10~$\alpha$ at a single instant (which implies a market price of 2~$\alpha$ per~$\beta$), the same exchange on the \StokEx{} runs as a steady flow --- say 1~$\beta$ per hour for five hours --- always at the current market price. The goals that guide this market's design are fairness, transparency, and accessibility.
@@ -233,7 +233,7 @@ These eight principles are the \emph{hypotheses} of the \StokEx{}: everything th
 \section{Core Equations of the \StokEx{} Algorithm}
 % ----------------------------------------------------------------------
 
-\subsection{The personal trading robot} % locked
+\subsection{The personal trading robot}
 % ----------------------------------------------------------------------
 
 Everything in this subsection is written from the point of view of a single participant, taking the market price $\priceAB_\Omega$ as a given input. We give the two exchange velocities that the participant's trading robot outputs, the profit it accumulates over time, the moment it empties an account, and a worked example on real data. The market price it reacts to is itself constructed, from the aggregate of all participants' trading robots, in Sec.~\ref{secMarketPrice}.
@@ -355,7 +355,7 @@ In Fig.~\ref{figExchangeSymmetry}, we can see that, expressed in the same units 
 \begin{figure}[tb]
 \centering
 \includegraphics[width=0.75\textwidth]{stokex_symmetry.pdf}
-\caption{participant $i$'s exchange velocities for an estimate of $\priceAB_i = 10$~$\alpha$ per~$\beta$ with a degree of confidence $\theta_i= 75 \%$. To compare both exchange velocities on a single axis, asset~B's velocity is converted to its $\alpha$-equivalent using the participant's own estimate, $\dot{X}_i^\beta \priceAB_i$ --- the fair conversion factor according to participant $i$, not the (generally different) market price $\priceAB_\Omega$.}
+\caption{Participant $i$'s exchange velocities for an estimate of $\priceAB_i = 10$~$\alpha$ per~$\beta$ with a degree of confidence $\theta_i= 75 \%$. To compare both exchange velocities on a single axis, asset~B's velocity is converted to its $\alpha$-equivalent using the participant's own estimate, $\dot{X}_i^\beta \priceAB_i$ --- the fair conversion factor according to participant $i$, not the (generally different) market price $\priceAB_\Omega$.}
 \label{figExchangeSymmetry}
 \end{figure}
 
@@ -413,7 +413,7 @@ As we have seen, Alice needs to answer two questions to deploy her personal trad
 
 Over the exchange window Alice ends $\approx10.6$~CAD ($\approx6.5$~EUR) ahead: against a starting wealth of $\approx247$~CAD ($\approx168$~EUR), a five-year return of about 4\% (4.3\% counted in CAD, 3.9\% in EUR). The two profit curves are related exactly by \eqref{eqProfitIdentity}. Therefore ``How much richer is Alice'' is only a well-posed question once a currency is chosen to measure it in, and the \StokEx{} itself never makes that choice: every principle is stated in terms of exchange velocities and ratios, never in terms of a profit computed in one privileged asset.
 
-\emph{A note on the reference exchange velocity.} Alice's robot's exchange velocities \eqref{eqExchangeVelocities} are both scaled by $\dot{R}$, the reference exchange velocity of this market. In the \tok{} system it has a natural value, the system's universal-income velocity (Sec.~\ref{secReferenceImplementation}); between two floating currencies there is no such anchor, because fiat money is not a stable unit of value --- the purchasing power of each drifts downward, at its own inflation rate, which no issuer commits to in advance. We therefore set $\dot{R} = 1$~CAD/day throughout, an arbitrary placeholder rather than an estimate of how actively a real participant trades: every CAD and EUR amount above is exactly proportional to it,while the fractions of days spent buying versus selling, and the dates of the largest signals, do not depend on it.
+\emph{A note on the reference exchange velocity.} Alice's robot's exchange velocities \eqref{eqExchangeVelocities} are both scaled by $\dot{R}$, the reference exchange velocity of this market. In the \tok{} system it has a natural value, the system's universal-income velocity (Sec.~\ref{secReferenceImplementation}); between two floating currencies there is no such anchor, because fiat money is not a stable unit of value --- the purchasing power of each drifts downward, at its own inflation rate, which no issuer commits to in advance. We therefore set $\dot{R} = 1$~CAD/day throughout, an arbitrary placeholder rather than an estimate of how actively a real participant trades: every CAD and EUR amount above is exactly proportional to it, while the fractions of days spent buying versus selling, and the dates of the largest signals, do not depend on it.
 
 \subsection{The market}\label{secMarketPrice}
 % ----------------------------------------------------------------------
@@ -608,7 +608,9 @@ $n_i^\beta$ & participant $i$'s balance of asset B (in $\beta$)
 \subsection{Reference implementation in the \tok{} system}\label{secReferenceImplementation}
 % ----------------------------------------------------------------------
 
-In the \tok{} system, the \StokEx{} is instantiated with $\alpha$ = the \tok{} (a universal-income-based currency with continuous exponential disintegration) and $\beta$ = an extrernal currency (CAD, EUR, \ldots), with one market per external currency. The reference implementation uses the following parameters: the reference exchange velocity $\dot{R}$ is set to the universal income velocity of the \tok{} system (1~\tok{} per 15~days); estimates are bounded to $10^{-6} \leq \priceAB_i \leq 10^{6}$; degrees of confidence are discretized with a step of $10^{-4}\,\%$ and capped at $99.9999\,\%$; the default market price of an empty market is 1.
+In the \tok{} system, the \StokEx{} is instantiated with $\alpha$ = the \tok{} (a universal-income-based currency with continuous exponential disintegration) and $\beta$ = an external currency (CAD, EUR, \ldots), with one market per external currency. The reference implementation uses the following parameters: the reference exchange velocity $\dot{R}$ is set to the universal-income velocity of the \tok{} system (1~\tok{} per 15~days); estimates are bounded to $10^{-6} \leq \priceAB_i \leq 10^{6}$; the default market price of an empty market is 1; degrees of confidence are discretized with a step of $10^{-4}\,\%$ and are bounded to $0\,\% \leq \theta_i \leq 99.9999\,\%$.
+
+The participant's degree of confidence is capped just below $100\%$ to keep every participant weight finite, sidestepping the $\infty\cdot 0$ evaluation of the strict limit and keeping the implementation simple; it is a matter of numerical convenience rather than modeling necessity, as the mechanism remains well-defined even as $\theta \to 100\%$ (see Annex~\ref{secProofInfiniteWeight}).
 
 Figure~\ref{figRefImplUI} shows this interface in operation, with the \tok{} exchanged against a fictional external currency, the TIK: a participant reads off the current market rate and their two balances, and declares the two inputs --- an estimate of the relative value and a degree of confidence --- from which their personal trading robot is set up.
 
@@ -616,7 +618,7 @@ Figure~\ref{figRefImplUI} shows this interface in operation, with the \tok{} exc
 \centering
 \includegraphics[width=0.75\textwidth]{reference_implementation_ui_1.png}\\[8pt]
 \includegraphics[width=0.75\textwidth]{reference_implementation_ui_2.png}
-\caption{The reference implementation of the \StokEx{} in the \tok{} system, shown against a fictional extrenal currency, the TIK. \emph{Top:} the market view --- the current exchange rate, each account's balance (here $100$~\tok{}s and $1000$~TIK), and the two exchange velocities, quoted per $15$~days (the universal-income velocity is 1~\tok{} per $15$~days). \emph{Bottom:} the same participant declaring their two inputs, an estimate ($1$~TIK${}={}10$~\tok{}s) and a degree of confidence ($75\%$), with the response curves the mechanism derives from them.}
+\caption{The reference implementation of the \StokEx{} in the \tok{} system, shown against a fictional external currency, the TIK. \emph{Top:} the market view --- the current exchange rate, each account's balance (here $100$~\tok{}s and $1000$~TIK), and the two exchange velocities, quoted per $15$~days (the universal-income velocity is 1~\tok{} per $15$~days). \emph{Bottom:} the same participant declaring their two inputs, an estimate ($1$~TIK${}={}10$~\tok{}s) and a degree of confidence ($75\%$), with the response curves the mechanism derives from them.}
 \label{figRefImplUI}
 \end{figure}
 
@@ -663,14 +665,14 @@ Using the expression \eqref{eqMarketPrice} for the market price, we can also wri
    W_\Omega = \priceAB_\Omega^2 \sum_i w_i \priceBA_i^2\,. \label{eqTotalMarketWeight2}
 \end{equation}
 
-Consequently, we can define the total market degree of confidence (using the inverse of the  weighting factor function \eqref{eqFunctionW}) as
+Consequently, we can define the total market degree of confidence (using the inverse of the weighting factor function \eqref{eqFunctionW}) as
 \begin{equation}
    \Theta_\Omega = \frac{200\%}{\pi} \arctan \left( 3 \, W_\Omega\right) \,. \label{eqTotalMarketDegree}
 \end{equation}
 
-An important takeaway from this analysis is that the total market weight $W_\Omega$ can serve as a useful index that indicates the ``stiffness'' of the market. A market with a large $W_\Omega$ will resist more strongly to a change in market price $\priceAB_\Omega$. Moreover, we can see from \eqref{eqTotalMarketWeight} that the market weight increases with each new participant to the market (unless, of course, the old participants decide to change their estimate). This suggests that a market with a large number of participants using the \StokEx{} algorithm would have a relatively stable market price.
+An important takeaway from this analysis is that the total market weight $W_\Omega$ can serve as a useful index that indicates the ``stiffness'' of the market. A market with a large $W_\Omega$ will resist more strongly a change in market price $\priceAB_\Omega$. Moreover, we can see from \eqref{eqTotalMarketWeight} that the market weight increases with each new participant to the market (unless, of course, the old participants decide to change their estimate). This suggests that a market with a large number of participants using the \StokEx{} algorithm would have a relatively stable market price.
 
-\subsection{Average participant estimate}
+\subsection{Average participant weight}
 % ----------------------------------------------------------------------
 
 From the total market weight, we can simply derive the average participant weight as
@@ -682,7 +684,7 @@ where $N_\Omega$ is the number of participants included in the market, and the a
     \theta_\Omega = \frac{200\%}{\pi} \arctan \left( 3 \, w_\Omega\right) \,. \label{eqAvergageParticipantDegree}
 \end{equation}
 
-This result, combined with the fact that we can aggregate a group of participants and treat it as a single participant using \eqref{eqMarketBehavior}, can be very useful if we want to compare the average behavior of different sub groups of participants (assuming that we have extra data about them). For instance, in the case of an international market we would be able to tell how the average participant of a certain country perceives the value of an asset compared to the average participant of another country.
+This result, combined with the fact that we can aggregate a group of participants and treat it as a single participant using \eqref{eqMarketBehavior}, can be very useful if we want to compare the average behavior of different subgroups of participants (assuming that we have extra data about them). For instance, in the case of an international market we would be able to tell how the average participant of a certain country perceives the value of an asset compared to the average participant of another country.
 
 
 \subsection{Market update}\label{secMarketUpdate}
@@ -717,7 +719,7 @@ By taking the square root, we get the analogous standard deviation of the partic
     \sigma_{\priceAB} = \sqrt{\frac{1}{W_\Omega} \sum_i w_i \priceAB_i^2 - \priceAB_\Omega^2}\,.
 \end{equation}
 
-In order to derive this result, we had to imply that, in some sense, $w_i/W_\Omega$ corresponds to the probability that a participant estimates the price of $\priceAB$ at $\priceAB_i$ in a context where each participant has the same weight. Since this is not actually the case in the context of the \StokEx{}, we must be careful with the use of the analogous variance and the analogous standard deviation. Nonetheless, these quantities still offer useful insight into the distribution of the participants' estimates, weighted toward the more confident ones.
+In order to derive this result, we had to assume that, in some sense, $w_i/W_\Omega$ corresponds to the probability that a participant estimates the price of $\priceAB$ at $\priceAB_i$ in a context where each participant has the same weight. Since this is not actually the case in the context of the \StokEx{}, we must be careful with the use of the analogous variance and the analogous standard deviation. Nonetheless, these quantities still offer useful insight into the distribution of the participants' estimates, weighted toward the more confident ones.
 
 % ----------------------------------------------------------------------
 \section{Conclusion}
@@ -739,8 +741,7 @@ Every central result of this document --- the closed-form market price and its u
 \section{Annexes: Mathematical Proofs}
 % ----------------------------------------------------------------------
 
-\placeholder{\textbf{[To be completed before submitting]}~ Insert here fixed url tag \texttt{stokex-defpub-2026-08} :
-\url{https://github.com/smoothop-org/tok-system/tree/stokex-defpub-2026-08/publications/stokex/}}
+The Lean~4 / mathlib proofs, the numerical verification and the toy implementation accompanying these annexes are available at the tagged release \texttt{stokex-defpub-2026-10}: \url{https://github.com/smoothop-org/tok-system/tree/stokex-defpub-2026-10/publications/stokex/}.
 
 \subsection{The reference exchange velocity}\label{secReferenceVelocityBias}
 % ----------------------------------------------------------------------
