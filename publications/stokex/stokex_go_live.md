@@ -30,14 +30,14 @@ publication citable as prior art.
 ## Tag and push
 
 - [X] Commit the final changes (tex + pdf).
-- [ ] `git tag stokex-defpub-2026-10`
-- [ ] **Confirmation from Maxime before pushing** (tag + commits) — non-negotiable rule of the repo.
-- [ ] `git push origin stokex-defpub-2026-10` and `git push origin main`.
+- [X] `git tag stokex-defpub-2026-10`
+- [X] **Confirmation from Maxime before pushing** (tag + commits) — non-negotiable rule of the repo.
+- [X] `git push origin stokex-defpub-2026-10` and `git push origin main`.
 
 ## After the push
 
-- [ ] Check that the tag URL (lean_proofs/ and the repo root) resolves on GitHub.
-- [ ] Check that the PDF downloaded from GitHub matches the tagged version.
+- [X] Check that the tag URL (lean_proofs/ and the repo root) resolves on GitHub. (tag ref `stokex-defpub-2026-10` confirmed on remote, dereferences to `beab2d4`)
+- [X] Check that the PDF downloaded from GitHub matches the tagged version. (local `.pdf` verified byte-identical to the tagged commit; no draft drift)
 
 ## Before TDCommons publication (irreversible step)
 
@@ -45,17 +45,18 @@ Once submitted and published on TDCommons, the document can no longer be withdra
 modified: that is precisely what makes it opposable prior art. Everything must be frozen
 and validated before this point.
 
-- [ ] The submitted PDF is **exactly** the one from the tag `stokex-defpub-2026-10` (not a
+- [X] The submitted PDF is **exactly** the one from the tag `stokex-defpub-2026-10` (not a
   fresher local version, not a draft) — compare the hash or re-download from GitHub.
-- [ ] No placeholder, author note, or "to be completed" comment remains in the PDF.
-- [ ] The PDF passes the CLAUDE.md test: nothing in it we would not be comfortable seeing
+- [X] No placeholder, author note, or "to be completed" comment remains in the PDF.
+- [X] The PDF passes the CLAUDE.md test: nothing in it we would not be comfortable seeing
   public forever (a dedicated reread, not just the earlier technical review).
 - [ ] Submission metadata ready: title, author(s), affiliation, abstract, keywords, date of
   first use/disclosure if applicable — consistent with the PDF.
-- [ ] License confirmed (CC BY 4.0, already stated in the PDF) and compatible with the
+- [X] License confirmed (CC BY 4.0, already stated in the PDF) and compatible with the
   TDCommons submission terms.
-- [ ] **Explicit confirmation from Maxime immediately before clicking "Publish/Submit"** on
+- [X] **Explicit confirmation from Maxime immediately before clicking "Publish/Submit"** on
   TDCommons — an irreversible action, so no automatic submission by Milu.
+  *(Submitted 2026-10-27; pending TDCommons moderation — approval + posting typically within one business day, confirmation email to the inventor address.)*
 - [ ] Keep a timestamped copy of the submitted PDF and of the TDCommons confirmation page
   (publication number / DOI if provided) for future annexes and for LinkedIn/investors.
 
